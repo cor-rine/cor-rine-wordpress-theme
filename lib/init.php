@@ -11,8 +11,17 @@ function roots_setup() {
     'primary_navigation' => __('Primary Navigation', 'roots'),
   ));
 
+  /*
+   * This theme supports all available post formats by default.
+   * See http://codex.wordpress.org/Post_Formats
+   */
+  $formats = array('gallery', 'link', 'image', 'quote', 'video', 'audio', 'aside', 'chat', 'status');
+  add_post_type_support( 'post', 'post-formats' );
+
   // Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
   add_theme_support('post-thumbnails');
+  
+  add_theme_support( 'post-formats', $formats );
   // set_post_thumbnail_size(150, 150, false);
   // add_image_size('category-thumb', 300, 9999); // 300px wide (and unlimited height)
 
