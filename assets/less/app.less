@@ -14,20 +14,123 @@ a {
    color: darken(@cor-orange, 20%);
    transition: color 300ms linear;
    text-decoration: none;
+
+   blockquote {
+      background-color: @cor-orange;
+      transition: background-color 300ms linear;
+      color: #333;
+   }
+
    &:hover {
       color: @cor-orange;
       text-decoration: none;
+
+      blockquote {
+         background-color: lighten(@cor-orange, 20%);
+      }
    }
+
+   &.tag-link {
+      font-size: 0.7em;
+      display: inline-block;
+      margin: 0 10px;
+
+      &:before {
+         font-family: 'cor-rine-icons';
+         display: inline-block;
+         content: "\e61c";
+         margin-right: 5px;
+      }
+   }
+
+   &.comment-reply-link {
+      &:extend(.tag-link);
+
+      &:before {
+         font-family: 'cor-rine-icons';
+         display: inline-block;
+         content: "\e60d";
+         margin-right: 5px;
+      }
+   }
+
+   &.comment-edit-link {
+      &:extend(.comment-reply-link);
+      margin-right: 10px;
+
+      &:before {
+         font-family: 'cor-rine-icons';
+         display: inline-block;
+         content: "\e607";
+         margin-right: 5px;
+      }
+   }
+
+   &.comment-logout-link {
+      &:extend(.comment-reply-link);
+      display: block;
+
+      &:before {
+         font-family: 'cor-rine-icons';
+         display: inline-block;
+         content: "\e637";
+         margin-right: 5px;
+      }
+   }
+
+      
 }
 
 p {
    font-family: @font-family-serif;
+
+   &.tag-link {
+      color: @gray;
+      font-family: @font-family-sans-serif;
+      font-size: 0.7em;
+      display: inline-block;
+      margin: 0 10px;
+      text-transform: uppercase;
+
+      &:before {
+         font-family: 'cor-rine-icons';
+         display: inline-block;
+         content: "\e61c";
+         margin-right: 5px;
+      }
+   }
+}
+
+blockquote {
+   background-color: lighten(@cor-green, 20%);
+   border: none;
+   padding: 50px;
+   margin: 0 auto;
+   max-width: 1000px;
+   overflow: hidden;
+
+   > p {
+      font-size: 1.5em;
+      text-align: center;
+   }
+
+   em {
+      float: right;
+      font-size: 0.7em;
+   }
+}
+
+form {
+   overflow: hidden;
 }
 
 
-button {
+button,
+.btn-primary{
    background: @cor-yellow;
    border: none;
+   .border-radius(0);
+   color: #333;
    font-size: 0.8em;
    font-family: @font-family-sans-serif;
    text-transform: uppercase;
@@ -35,11 +138,36 @@ button {
    position: relative;
    transition: background-color 300ms linear;
 
+   &:focus {
+      background: darken(@cor-yellow, 10%);
+      outline: 0;
+   }
+
    &:hover {
       background: darken(@cor-yellow, 10%);
    }
 
+   &.btn-primary {
+      color: #333;
+      float: right;
+      margin-right: 20px;
+
+      &:after {
+         background: darken(@cor-yellow, 10%);
+         font-family: 'cor-rine-icons';
+         content: "\e618";
+         display: inline-block;
+         position: absolute;
+         right: -20px;
+         padding: 10px 7px;
+         top: 0;
+      }
+   }
+
    &.keep-reading {
+      float: right;
+      margin-right: 60px;
+
       &:hover {
          
          &:after {
@@ -59,6 +187,33 @@ button {
    }
 }
 
+input[type=submit] {
+   &:extend(button);
+   border-radius: 0px;
+   color: #000;
+   font-family: @font-family-sans-serif;
+}
+
+textarea {
+   outline: none;
+   resize: none;
+   overflow: auto;
+}
+
+label {
+   font-size: 0.7em;
+}
+
+.alert-info {
+   background-color: lighten(@cor-yellow, 20%);
+   color: @cor-orange;
+   font-size: 0.5em;
+   padding: 5px 20px;
+   border-radius: 0;
+   border: 0;
+   margin-top: 15px;
+}
+
 .user-icon {
    .border-radius(100%);
 }
@@ -74,6 +229,7 @@ button {
    ========================================================================== */
 
 .banner {
+   margin: 0 10%;
    padding: 50px 0 30px;
    text-transform: uppercase;
 }
@@ -87,7 +243,7 @@ button {
 
 .navbar-nav {
    float: right;
-   margin: 20px;
+   margin: 70px 20px 20px;
 
    li {
       a {
@@ -116,9 +272,22 @@ button {
 .content { }
 
 article {
-   margin-bottom: 30px;
+   margin-bottom: 60px;
+
+   &.format-image {
+      img {
+         margin: 30px auto;
+         width: 100%;
+      }
+   }
 }
 
+cite {
+   display: block;
+   font-family: @font-family-sans-serif;
+   font-size: 0.7em;
+   margin: 0 10px;
+}
 
 
 /* ==========================================================================
@@ -144,25 +313,40 @@ article {
    Posts
    ========================================================================== */
 
+.hero {
+   width: 100%;
+   height: 250px;
+   overflow: hidden;
+   margin-bottom: -35px;
+
+   > img {
+      width: 100%;
+      height: auto;
+   }
+}
+
 article > header {
    text-align: center;
    margin: 0 0 30px;
+}
 
-   .icon {
-      font-size: 3em;
+article .icon {
+   font-size: 3em;
+   display: block;
+   margin: 0 auto;
 
-      &:before {
-         @padding: 15px;
-         background: #fff;
-         .border-radius(100%);
-         display: inline;
-         padding: @padding;
-         margin-left: -(@padding);
-      }
+   &:before {
+      @padding: 15px;
+      background: #fff;
+      .border-radius(100%);
+      display: inline-block;
+      padding: @padding;
+      margin-left: -(@padding);
    }
 }
 
 .entry-title {
+   color: @cor-blue;
    font-family: @font-family-sans-serif;
    font-size: 2.8em;
 }
@@ -180,6 +364,100 @@ article > header {
 
 .entry-summary {
    font-size: 1.8em;
+   margin: 0 10%;
+}
+
+.entry-content {
+   &:extend(.entry-summary);
+   border-bottom: solid 2px @gray-lighter;
+   padding-bottom: 30px;
+   margin-bottom: 40px;
+}
+
+
+.tags {
+   margin: 50px 10%;
+   text-align: center;
+   border-top: 1px solid @gray-light;
+   padding: 30px;
+}
+
+
+
+
+/* ==========================================================================
+   Comments
+   ========================================================================== */
+
+#respond {
+   position: relative;
+   &:extend(.entry-summary);
+   & > h3 {
+      color: @cor-blue;
+   }
+}
+
+
+#comments {
+   &:extend(.entry-summary);
+   font-size: 1.8em;
+   margin-bottom: 40px;
+   padding-bottom: 30px;
+   border-bottom: 1px solid @gray-light;
+
+   > h3 {
+      margin-bottom: 30px;
+      color: @cor-blue;
+   }
+}
+
+.cancel-comment-reply a {
+   position: absolute;
+   top: -14px;
+   right: -31px;
+   visibility: hidden;
+
+   &:after {
+      font-family: 'cor-rine-icons';
+      display: inline-block;
+      content: "\e637";
+      margin-right: 5px;
+      visibility: visible;
+   }
+}
+
+
+.avatar { .border-radius(100%); }
+
+.media-list #respond {
+   font-size: 1em;
+}
+
+.media {
+   margin-top: 35px;
+}
+
+.media-body {
+   position: relative;
+}
+
+.media-heading {
+   display: inline-block;
+   font-size: 0.8em;
+   margin: 18px 0;
+}
+
+.media-meta {
+   font-size: 0.5em;
+   text-align: right;
+   display: block;
+   position: absolute;
+   top: 20px;
+   right: 0;
+
+   > p {
+      font-family: @font-family-sans-serif;
+   }
 }
 
 
