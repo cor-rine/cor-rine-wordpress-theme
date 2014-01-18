@@ -1,8 +1,26 @@
-<?php get_template_part('templates/page', 'header'); ?>
 
-<div class="alert alert-warning">
-  <?php _e('Sorry, but the page you were trying to view does not exist.', 'roots'); ?>
+<div class="wrap container" role="document">
+    <div class="content row">
+        <main class="main four-oh-four" role="main">
+          
+            <article>
+                <div class="icon icon-compass spin"></div>
+                <header>
+                    <caption>Ugh, guys?  I think our compass is broken.<br/>This isn't the right place.</caption>
+                </header>
+
+            </article>
+
+    
+            
+        </main>
+    </div>
 </div>
+
+
+
+
+
 
 <p><?php _e('It looks like this was the result of either:', 'roots'); ?></p>
 <ul>
