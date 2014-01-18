@@ -10,6 +10,10 @@
 
 body { }
 
+h1 {
+   text-align: center;
+}
+
 a {
    color: darken(@cor-orange, 20%);
    transition: color 300ms linear;
@@ -38,7 +42,7 @@ a {
       &:before {
          font-family: 'cor-rine-icons';
          display: inline-block;
-         content: "\e61c";
+         content: "\e619";
          margin-right: 5px;
       }
    }
@@ -49,7 +53,7 @@ a {
       &:before {
          font-family: 'cor-rine-icons';
          display: inline-block;
-         content: "\e60d";
+         content: "\e611";
          margin-right: 5px;
       }
    }
@@ -61,7 +65,7 @@ a {
       &:before {
          font-family: 'cor-rine-icons';
          display: inline-block;
-         content: "\e607";
+         content: "\e604";
          margin-right: 5px;
       }
    }
@@ -73,7 +77,7 @@ a {
       &:before {
          font-family: 'cor-rine-icons';
          display: inline-block;
-         content: "\e637";
+         content: "\e604";
          margin-right: 5px;
       }
    }
@@ -95,7 +99,7 @@ p {
       &:before {
          font-family: 'cor-rine-icons';
          display: inline-block;
-         content: "\e61c";
+         content: "\e619";
          margin-right: 5px;
       }
    }
@@ -155,7 +159,7 @@ button,
       &:after {
          background: darken(@cor-yellow, 10%);
          font-family: 'cor-rine-icons';
-         content: "\e618";
+         content: "\e639";
          display: inline-block;
          position: absolute;
          right: -20px;
@@ -177,7 +181,7 @@ button,
       &:after {
          background: darken(@cor-yellow, 10%);
          font-family: 'cor-rine-icons';
-         content: "\e618";
+         content: "\e639";
          display: inline-block;
          position: absolute;
          right: -20px;
@@ -264,6 +268,66 @@ label {
 }
 
 
+.page-header {
+   border: none;
+}
+
+
+.pager {
+
+   &:extend(.entry-summary);
+
+   .clearfix();
+
+   li {
+
+      & > a {
+         -webkit-appearance: inherit;
+         &:extend(button);
+
+         &:focus {
+            background: darken(@cor-yellow, 10%);
+            outline: 0;
+         }
+
+         &:hover {
+            background: darken(@cor-yellow, 10%);
+         }
+      }
+      
+
+      &.previous {
+         float: left;
+         margin-left: 20px;
+         a:before {
+            background: darken(@cor-yellow, 10%);
+            font-family: 'cor-rine-icons';
+            content: "\e636";
+            display: inline-block;
+            position: absolute;
+            left: -25px;
+            padding: 10px 7px;
+            top: 0;
+         }
+      }
+
+      &.next {
+         a:after {
+            background: darken(@cor-yellow, 10%);
+            font-family: 'cor-rine-icons';
+            content: "\e639";
+            display: inline-block;
+            position: absolute;
+            right: -20px;
+            padding: 10px 7px;
+            top: 0;
+
+         }
+      }
+
+   }
+
+}
 
 /* ==========================================================================
    Content
@@ -275,9 +339,15 @@ article {
    margin-bottom: 60px;
 
    &.format-image {
+
+      .entry-content,
+      .entry-summary {
+         text-align: center; 
+      }
       img {
          margin: 30px auto;
-         width: 100%;
+         width: auto;
+         max-width: 100%;
       }
    }
 }
@@ -294,7 +364,8 @@ cite {
    Primary Content
    ========================================================================== */
 
-.main { }
+.main {
+}
 
 /* Gallery Shortcode */
 .gallery-row { padding: 15px 0; }
@@ -325,9 +396,25 @@ cite {
    }
 }
 
-article > header {
-   text-align: center;
-   margin: 0 0 30px;
+article {
+
+   &:after {
+      &:extend(h1:after);
+      content: " ";
+      border: 1px solid lighten(@cor-green, 20%);
+      display: block;
+      margin: 50px auto 0;
+      width: 25%;
+   }
+
+   &:last-child:after {
+      display: none;
+   }
+
+   > header {
+      text-align: center;
+      margin: 0 0 30px;
+   }
 }
 
 article .icon {
@@ -336,7 +423,7 @@ article .icon {
    margin: 0 auto;
 
    &:before {
-      @padding: 15px;
+      @padding: 17px;
       background: #fff;
       .border-radius(100%);
       display: inline-block;
@@ -375,14 +462,60 @@ article .icon {
 }
 
 
-.tags {
+.tags,
+.content #ssba {
    margin: 50px 10%;
    text-align: center;
    border-top: 1px solid @gray-light;
    padding: 30px;
+
+   a#ssba_tooptip {
+      display: none !important;
+      & > span {
+         display: none !important;
+      }
+   }
+}
+
+.thumbnail {
+   border: none;
+   
+
+   > img {
+      max-width: 100%;
+      width: auto;
+   }
 }
 
 
+.content #ssba {
+
+   padding-bottom: 0;
+
+   &:before {
+      content: "\Tell all your friends:";
+      font-family: @font-family-sans-serif;
+      font-size: 0.7em;
+      display: block;
+   }
+
+   a {
+      background-color: @cor-orange;
+      color: #fff;
+      font-size: 1.4em;
+      padding: 20px;
+      margin: 10px;
+      transition: background-color 300ms linear;
+
+
+      &:hover {
+         background-color: lighten(@cor-orange, 20%);
+         color: #fff;
+      }
+
+   }
+   
+}
 
 
 /* ==========================================================================
@@ -420,7 +553,7 @@ article .icon {
    &:after {
       font-family: 'cor-rine-icons';
       display: inline-block;
-      content: "\e637";
+      content: "\e658";
       margin-right: 5px;
       visibility: visible;
    }
@@ -486,8 +619,50 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
    Media Queries
    ========================================================================== */
 
-@media (min-width: @screen-sm-min) { }
+// ----------------------------------- Mobile/Tablet
+@media all and (max-width:767px) {
 
-@media (min-width: @screen-md-min) { }
+   .navbar-default .navbar-toggle {
+      top: 50px;
+   }
 
-@media (min-width: @screen-lg-min) { }
+
+   header > .container {
+      position: relative;
+
+      .navbar-nav {
+
+         margin: 0;
+
+         li {
+
+            a {
+               display: block;
+               padding: 10px 0;
+               margin: 10px;
+            }
+
+            &:after {
+               display: none;
+            }
+         }
+
+      }
+
+      > nav {
+         height: auto;
+         text-align: right;
+
+         
+      }
+   }
+}
+
+// ----------------------------------- Desktop
+@media all and (min-width:768px) {
+
+   .navbar-default .navbar-toggle {
+      border-color: blue;
+   }
+
+}

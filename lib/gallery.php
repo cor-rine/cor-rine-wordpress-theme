@@ -41,7 +41,7 @@ function roots_gallery($attr) {
     'icontag'    => '',
     'captiontag' => '',
     'columns'    => 4,
-    'size'       => 'thumbnail',
+    'size'       => 'medium',
     'include'    => '',
     'exclude'    => '',
     'link'       => ''
@@ -75,7 +75,7 @@ function roots_gallery($attr) {
   if (is_feed()) {
     $output = "\n";
     foreach ($attachments as $att_id => $attachment) {
-      $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+      $output .= wp_get_attachment_link($att_id, 'full', true) . "\n";
     }
     return $output;
   }
