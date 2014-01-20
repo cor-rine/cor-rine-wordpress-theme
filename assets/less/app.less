@@ -460,7 +460,7 @@ article {
 
    > header {
       text-align: center;
-      margin: 0 0 30px;
+      margin: 0 10% 30px;
    }
 }
 
@@ -769,8 +769,9 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 
 
 // ----------------------------------- Mobile/Tablet
-@media all and (max-width:400px) {
-   header {
+@media all and (max-width:640px) {
+
+   .banner {
       margin: 0 2%;
       padding: 20px 0 20px;
    }
@@ -781,8 +782,13 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 // ----------------------------------- Mobile/Tablet
 @media all and (max-width:767px) {
 
+   input {
+      -webkit-appearance: none;
+      border-radius: none;
+   }
+
    .navbar-default .navbar-toggle {
-      top: 50px;
+      top: 40px;
    }
 
 
