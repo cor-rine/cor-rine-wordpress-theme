@@ -12,6 +12,7 @@
     <meta property="og:url" content="<?php echo get_permalink( $post->ID ); ?>"/>
     <meta property="og:site_name" content="cortravels"/>
     <meta property="og:type" content="blog"/>
+    <meta property="og:description" content="The travel blog of Corrine Toracchio."/>
 
   <?php wp_head(); ?>
 
