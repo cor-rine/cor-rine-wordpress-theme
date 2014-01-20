@@ -57,6 +57,7 @@
                 <a href="http://instagram.com/cor_rines" class="icon icon-instagram" target="_blank"></a>
                 <a href="https://twitter.com/cor_rine" class="icon icon-twitter" target="_blank"></a>
                 <a href="http://www.linkedin.com/pub/corrine-toracchio/41/668/513" class="icon icon-linkedin" target="_blank"></a>
+                <a href="<?php bloginfo('rss2_url'); ?>" class="icon icon-rss" target="_blank"></a>
             </div>
             
         </div>
