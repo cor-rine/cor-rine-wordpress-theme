@@ -5,7 +5,18 @@ var ExampleSite = {
   // All pages
   common: {
     init: function() {
-      // JS here
+
+      $('.searchbar form button').on('click', function(event) {
+        console.log();
+        var val = $('.searchbar form input').val().trim();
+
+        if (!!!val) {
+          event.preventDefault();
+          return false;
+        }
+
+      });
+
     },
     finalize: function() { }
   },

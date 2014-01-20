@@ -508,6 +508,21 @@ article .icon {
    margin-bottom: 40px;
 }
 
+section {
+   &:extend(.entry-summary);
+
+   &.no-results,
+   &.four-oh-four {
+      margin: 60px 0;
+      text-align: center;
+
+      .icon {
+         font-size: 2em;
+         margin-bottom: 30px;
+      }
+   }
+}
+
 
 .tags,
 .content #ssba {
@@ -798,4 +813,47 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
       border-color: blue;
    }
 
+}
+
+
+
+/*
+==============================================
+compass-spin
+==============================================
+*/
+
+.compass-spin{
+   animation-name: compass-spin;
+   -webkit-animation-name: compass-spin; 
+
+   animation-duration: 1.7s;  
+   -webkit-animation-duration: 1.7s;
+
+   animation-iteration-count: infinite;
+   -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes compass-spin {
+   0% {
+      transform: rotate(-23deg);  
+   }
+   50% {
+      transform: rotate(23deg);
+   }
+   100% {
+      transform: rotate(-23deg);  
+   }                 
+}
+
+@-webkit-keyframes compass-spin {
+   0% {
+      -webkit-transform: rotate(-23deg);   
+   }
+   50% {
+      -webkit-transform: rotate(23deg);
+   }
+   100% {
+      -webkit-transform: rotate(-23deg);   
+   }           
 }

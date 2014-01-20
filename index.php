@@ -1,10 +1,14 @@
-<?php get_template_part('templates/page', 'header'); ?>
-
 <?php if (!have_posts()) : ?>
-  <div class="alert alert-warning">
-    <?php _e('Sorry, no results were found.', 'roots'); ?>
-  </div>
-  <?php get_search_form(); ?>
+
+  <section class="no-results">
+    <div class="icon icon-star spin"></div>
+    <header>
+        <caption>You've searched for something that can't be found.<br/>Here's a star instead.</caption>
+    </header>
+  </section>
+
+<?php else:?>
+  <?php get_template_part('templates/page', 'header'); ?>
 <?php endif; ?>
 
 <?php while (have_posts()) : the_post(); ?>

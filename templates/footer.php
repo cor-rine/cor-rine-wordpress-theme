@@ -52,7 +52,7 @@
             </div>
 
             <div class="box social">
-                <h4>Connect/Creep Corrine</h4>
+                <h4>Connect/Creep</h4>
                 <a href="https://www.facebook.com/corrinetoracchio" class="icon icon-facebook" target="_blank"></a>
                 <a href="http://instagram.com/cor_rines" class="icon icon-instagram" target="_blank"></a>
                 <a href="https://twitter.com/cor_rine" class="icon icon-twitter" target="_blank"></a>

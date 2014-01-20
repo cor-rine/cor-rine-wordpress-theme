@@ -1,17 +1,15 @@
 
 <div class="wrap container" role="document">
     <div class="content row">
-        <main class="main four-oh-four" role="main">
+        <main class="main" role="main">
           
-            <article>
-                <div class="icon icon-compass spin"></div>
+            <section class="four-oh-four">
+
+                <div class="icon icon-compass compass-spin"></div>
                 <header>
-                    <caption>Uhh, guys...I think our compass is broken.<br/>This isn't the right place.</caption>
+                    <caption>Looks like the compass is broken.<br/>This isn't where you're supposed to be.</caption>
                 </header>
-
-            </article>
-
-    
+            </section>    
             
         </main>
     </div>
