@@ -7,7 +7,7 @@
 
                 <div class="icon icon-compass compass-spin"></div>
                 <header>
-                    <caption>Looks like the compass is broken.<br/>This isn't where you're supposed to be.</caption>
+                    <caption>Hmm... looks like the compass is broken.<br/>This isn't where you're supposed to be.</caption>
                 </header>
             </section>    
             
