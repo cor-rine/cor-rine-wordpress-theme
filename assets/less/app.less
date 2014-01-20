@@ -99,6 +99,9 @@ aside {
    width: 50%;
    float: left;
    margin: 10px 30px 10px 0;
+   p {
+      color: darken(@cor-blue, 40%);
+   }
 }
 
 
@@ -192,20 +195,20 @@ button,
    }
 
    &.search-submit {
+      border-radius: 0px;
+      padding-right: 33px;
       &:before {
          font-family: 'cor-rine-icons';
          float: left;
          content: "\e65b";
-         display: inline-block;
          padding: 0;
          margin-right: 5px;
       }
    }
 }
 
-.input-group { width: 100%; }
-.input-group-btn {
-   width: auto;
+.input-group .search-field {
+   border-radius: 0px;
 }
 
 a.keep-reading {
@@ -642,40 +645,67 @@ article .icon {
    Footer
    ========================================================================== */
 
-footer.container {
-   background-color: lighten(@cor-green, 20%);
-   padding: 60px;
-   margin: 60px 0 0;
-}
-
-.social {
+footer {
    a {
-      font-size: 2em;
       color: darken(@cor-green, 10%);
       transition: color 300ms linear;
 
       &:hover {
          color: @cor-green;
       }
+   }
+
+   h4 {
+      text-align: center;
+   }
+}
+
+
+footer.container {
+   background-color: lighten(@cor-green, 20%);
+   padding: 60px 60px 15px;
+   margin: 60px 0 0;
+
+   .box:after {
+      &:extend(h1:after);
+      content: " ";
+      border-bottom: 1px solid darken(@cor-green, 20%);
+      display: block;
+      margin: 20px auto 20px;
+      width: 25%;
+   }
+}
+
+.social {
+   text-align: center;
+   a {
+      font-size: 1.6em;
+      margin: 6px;
 
       &:before {
+         
       }
    }
 }
 
-.archives ul {
+.box ul {
    &:extend(.navbar-nav);
    float: none;
    list-style: none;
    padding: 0;
+   text-align: center;
    .clearfix();
 
    li {
-      display: block;
-      float: left;
+      display: inline-block;
       a {
          display: inline;
          padding: 10px 15px;
+
+         .icon {
+            display: inline-block;
+            margin-right: 5px;
+         }
       }
       &:last-child:after {
          display: none;
@@ -696,6 +726,10 @@ footer.container {
    font-family: @font-family-sans-serif;
    text-align: center;
    text-transform: uppercase;
+
+   &.row {
+      margin-top: 5px;
+   }
 }
 
 .content-info { }
