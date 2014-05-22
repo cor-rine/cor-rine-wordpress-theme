@@ -12,7 +12,7 @@ $the_query = new WP_Query( $args );
 
 $myposts = get_posts('');
 
-$postData = [];
+$postData = array();
 
 
 
@@ -22,7 +22,7 @@ if ($the_query->have_posts()) {
 			
 			$the_query->the_post();
 
-			$flightPath = [];			
+			$flightPath = array();			
 
 			if (get_field("latitude2") != null && get_field("longitude2") != null) {
 				array_push($flightPath, get_field("latitude"));
@@ -63,14 +63,6 @@ if ($the_query->have_posts()) {
 			
 		} // end while
 	} // end if
-
-
-// foreach($myposts as $post) :
-// 	setup_postdata($post);
-
-// 	// echo apply_filters( 'the_content', $post->ID );
-
-// endforeach;
 
 
 echo ("<script type=\"text/javascript\"> var mapContent = [".json_encode($postData))."];
