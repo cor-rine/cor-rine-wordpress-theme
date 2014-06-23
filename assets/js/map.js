@@ -13,22 +13,25 @@ var CortravelsMap = {
     this.theMap = new google.maps.Map(document.getElementById('map-canvas'), this.myOptions);
 
     $.each(mapContent[0], function(index, value){
-
-      console.log(value.title, value.lat, value.flightpath);
-      if (prevLat != null && prevLng != null) {
-        if (prevFlightpath != null) {
-          _this.drawLine(prevFlightpath, value.lat, value.lng, prevType);
-        } else {
-          _this.drawLine([value.lat, value.lng], prevLat, prevLng, prevType);
+      
+      if (value.flightpath != null) {
+        console.log(value.title, value.lat, value.lng, value.flightpath, value.map_icon);
+        _this.drawLine(value.flightpath, value.lat, value.lng, value.map_icon);
+        prevLat = value.flightpath[(value.flightpath.length)-2];
+        prevLng = value.flightpath[(value.flightpath.length)-1];
+      } else {
+        if (prevLat != null && prevLng != null) {
+          console.log(prevLat, prevLng, [value.lat, value.lng]);
+          _this.drawLine([prevLat, prevLng], value.lat, value.lng, value.map_icon);
+          prevLat = value.lat;
+          prevLng = value.lng;
         }
       }
+      
+      prevFlightpath = (value.flightpath != null) ? value.flightpath : null;
+      // prevType = value.map_icon;
 
       _this.setMarker(value.lat, value.lng, value.map_icon, value.title, value.content);
-      
-      prevLat = value.lat;
-      prevLng = value.lng;
-      prevFlightpath = (value.flightpath != null) ? value.flightpath : null;
-      prevType = value.map_icon;
       
     });
 
@@ -38,6 +41,10 @@ var CortravelsMap = {
     zoom: 2,
     center: new google.maps.LatLng(40.385873, 20.471471),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: true,
+    scaleControl: true,
+    panControl: true,
+    zoomControl: true,
     styles: [{
         "stylers":[
           {"visibility":"off"}
@@ -113,13 +120,6 @@ var CortravelsMap = {
     
     var path = [];
 
-    for (var i=0; i<latlngs.length; i+=2) {
-      // console.log(latlngs);
-      var latlng = new google.maps.LatLng(latlngs[i], latlngs[i+1]);
-      path.push(latlng);
-    }
-    path.push(new google.maps.LatLng(lat2, lng2));
-
     // path.push(new google.maps.LatLng(latlngs[0], latlngs[1]));
     // path.push(new google.maps.LatLng(lat2, lng2));
 
@@ -148,9 +148,27 @@ var CortravelsMap = {
       strokeWeight: 1
     };
 
-    var travelPath = new google.maps.Polyline(
-      (mapIcon === "flight") ? flightLine : travelLine
-    );
+
+    var travelPath;
+
+    for (var i=0; i<latlngs.length; i+=2) {
+      // console.log(latlngs);
+      var latlng = new google.maps.LatLng(latlngs[i], latlngs[i+1]);
+      path.push(latlng);
+    }
+
+    if (latlngs.length > 2) {
+      travelPath = new google.maps.Polyline(
+        flightLine
+      );
+    } else {
+      path.push(new google.maps.LatLng(lat2, lng2));
+      travelPath = new google.maps.Polyline(
+        travelLine
+      );
+    }
+
+    
 
     travelPath.setMap(theMap);
 
@@ -160,6 +178,6 @@ var CortravelsMap = {
 };
 
 $(document).ready(function() {
-  console.log('ready');
+  // console.log('ready');
   CortravelsMap.initialize();
 });
