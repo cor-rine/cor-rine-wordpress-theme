@@ -20,6 +20,23 @@
 
         <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php get_template_part('templates/entry-meta'); ?>
+        <?php
+          $content = get_post_field( 'post_content', $post->ID );
+          $word_count = str_word_count( strip_tags( $content ) );
+
+          $read_time = ceil($word_count/300);
+          $read_class = 'short';
+          if ($read_time < 3) {
+            $read_class = 'short-length';
+          }
+          elseif ($read_time < 10 && $read_time >= 3) {
+            $read_class = 'medium-length';   
+          }
+          else {
+            $read_class = 'long-length';
+          }
+          echo ('<p class="read-time '.$read_class.'">'.$read_time.' minute read</p>');
+        ?>
 
     <?php endif; ?>
 

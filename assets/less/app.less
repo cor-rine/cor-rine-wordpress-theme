@@ -524,6 +524,19 @@ article .icon {
    font-size: 2.8em;
 }
 
+.read-time {
+   font-family: @font-family-sans-serif;
+   &.short-length {
+      color: lighten(@cor-orange, 10%);
+   }
+   &.medium-length {
+      color: lighten(@cor-green, 10%);
+   }
+   &.long-length {
+      color: lighten(@cor-blue, 10%);
+   }
+}
+
 .hentry header { }
 .hentry time {
    font-family: @font-family-sans-serif;
