@@ -15,6 +15,24 @@
         <h1 class="entry-title"><?php the_title(); ?></h1>
       <?php endif; ?>
       <?php get_template_part('templates/entry-meta'); ?>
+
+      <?php
+          $content = get_post_field( 'post_content', $post->ID );
+          $word_count = str_word_count( strip_tags( $content ) );
+
+          $read_time = ceil($word_count/300);
+          $read_class = 'short';
+          if ($read_time < 3) {
+            $read_class = 'short-length';
+          }
+          elseif ($read_time < 10 && $read_time >= 3) {
+            $read_class = 'medium-length';   
+          }
+          else {
+            $read_class = 'long-length';
+          }
+          echo ('<p class="read-time '.$read_class.'">'.$read_time.' minute read</p>');
+        ?>
     </header>
     <div class="entry-content">
       <?php the_content(); ?>
