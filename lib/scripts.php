@@ -31,9 +31,11 @@ function roots_scripts() {
 
   wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.7.0.min.js', array(), null, false);
   wp_enqueue_script('jquery');
-  wp_register_script('roots_scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array(), '3546c415a185b85bb7e5f35647582d30', true);
+  wp_register_script('roots_scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', array(), 'aba3c905a7263a07a1c575f453bc836b', true);
   wp_enqueue_script('modernizr');
   wp_enqueue_script('roots_scripts');
+
+  add_analytics();
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 
@@ -53,6 +55,27 @@ function roots_jquery_local_fallback($src, $handle = null) {
   return $src;
 }
 add_action('wp_head', 'roots_jquery_local_fallback');
+
+
+function add_analytics() { ?>
+
+<script>
+var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '<?php echo GOOGLE_ANALYTICS_ID; ?>']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<?php }
+if (GOOGLE_ANALYTICS_ID && !current_user_can('manage_options')) {
+  add_action('wp_footer', 'roots_google_analytics', 20);
+}
 
 function roots_google_analytics() { ?>
 

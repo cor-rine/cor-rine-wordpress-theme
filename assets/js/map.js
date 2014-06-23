@@ -10,18 +10,19 @@ var CortravelsMap = {
     var prevFlightpath = null;
     var prevType = "";
 
+
     this.theMap = new google.maps.Map(document.getElementById('map-canvas'), this.myOptions);
 
     $.each(mapContent[0], function(index, value){
       
       if (value.flightpath != null) {
-        console.log(value.title, value.lat, value.lng, value.flightpath, value.map_icon);
+        // console.log(value.title, value.lat, value.lng, value.flightpath, value.map_icon);
         _this.drawLine(value.flightpath, value.lat, value.lng, value.map_icon);
         prevLat = value.flightpath[(value.flightpath.length)-2];
         prevLng = value.flightpath[(value.flightpath.length)-1];
       } else {
         if (prevLat != null && prevLng != null) {
-          console.log(prevLat, prevLng, [value.lat, value.lng]);
+          // console.log(prevLat, prevLng, [value.lat, value.lng]);
           _this.drawLine([prevLat, prevLng], value.lat, value.lng, value.map_icon);
           prevLat = value.lat;
           prevLng = value.lng;
@@ -33,6 +34,11 @@ var CortravelsMap = {
 
       _this.setMarker(value.lat, value.lng, value.map_icon, value.title, value.content);
       
+    });
+
+    $('#map-canvas').on('click', 'a.keep-reading', function(e) {
+      e.preventDefault();
+      _gaq.push(['_trackEvent', 'Map', 'Keep Reading Click', _this.openInfoWindow.title]);
     });
 
   },
@@ -94,7 +100,8 @@ var CortravelsMap = {
     var latlng = new google.maps.LatLng(lat, lng);
 
     var infowindow = new google.maps.InfoWindow({
-      content: '<h2 class="entry-title">'+title+'</h2>' + content
+      content: '<h2 class="entry-title">'+title+'</h2>' + content,
+      title: title
     });
 
     var marker = new google.maps.Marker({
@@ -105,6 +112,7 @@ var CortravelsMap = {
     });
     
     google.maps.event.addListener(marker, 'click', function() {
+      _gaq.push(['_trackEvent', 'Map', 'Pin Click', infowindow.title]);
       if (_this.openInfoWindow != null) {
         _this.openInfoWindow.close();
       }
