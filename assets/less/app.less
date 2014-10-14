@@ -839,10 +839,51 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 /* ==========================================================================
    Media Queries
    ========================================================================== */
+@media all and (max-width:400px) {
+
+   blockquote {
+      font-size: 0.6em;
+      padding: 30px;
+   }
+
+   .banner {
+      margin: 0 1%;
+      padding: 20px 0 20px;
+   }
+
+   .navbar-header .user-icon { width: 65px; }
+   .navbar-toggle { margin-top: 28px; }
+
+   .navbar-default .navbar-nav { margin-top: 10px; }
+
+   .navbar-default .navbar-nav li {
+      padding: 10px 0;
+      text-align: right;
+      &:after {
+         display: none;
+      }
+   }
+
+   .hero {
+      height: auto;
+      >img { width: 140%; }
+   }
+
+   .entry-title {
+      font-size: 1.9em;
+      margin-top: 0
+   }
+
+   .entry-summary, .pager, .entry-content, section, #respond, #comments {
+      font-size: 1.4em;
+   }
+
+}
+
 
 
 // ----------------------------------- Mobile/Tablet
-@media all and (max-width:640px) {
+@media all and (min-width:401px) and (max-width:640px) {
 
    blockquote {
       font-size: 0.6em;
@@ -855,10 +896,36 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
    }
 
    .navbar-header .user-icon { width: 100px; }
+   .navbar-toggle { margin-top: 44px; }
+
+   .navbar-default .navbar-nav { margin-top: 10px; }
+
+   .navbar-default .navbar-nav li {
+      padding: 10px 0;
+      text-align: right;
+      &:after {
+         display: none;
+      }
+   }
+
+   .hero {
+      height: auto;
+      >img { width: 170%; }
+   }
+
+   .entry-title {
+      font-size: 2.1em;
+      margin-top: 0
+   }
+
+   .entry-summary, .pager, .entry-content, section, #respond, #comments {
+      font-size: 1.6em;
+   }
+
 }
 
 // ----------------------------------- Mobile/Tablet
-@media all and (max-width:767px) {
+@media all and (min-width:641px) and (max-width:767px) {
 
    input {
       -webkit-appearance: none;
